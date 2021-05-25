@@ -3,6 +3,7 @@
  * Version: 1.0.0
  * Website: https://github.com/sarkhanrajabov/saveStorage-js
  * Author: Sarkhan Rajabov
+ * Customize: Ricardo Flores
  **/
 
 function saveStorage(selector, options){
@@ -103,9 +104,9 @@ function saveStorage(selector, options){
             });
         });
 
-        form.addEventListener('submit', function () {
+        /* form.addEventListener('submit', function () {
             localStorage.removeItem(key);
-        });
+        }); */ 
 
         initApp();
     }
