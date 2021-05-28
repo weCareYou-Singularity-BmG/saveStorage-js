@@ -108,7 +108,7 @@ function saveStorage(selector, options){
             });
         });
 
-        document.querySelector("#send_form").addEventListener('click', function(){
+        form.querySelector("#send_form").addEventListener('click', function(){
             localStorage.removeItem(key);
         });
 
