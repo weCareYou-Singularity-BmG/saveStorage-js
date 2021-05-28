@@ -16,6 +16,7 @@ function saveStorage(selector, options){
             elements = form.querySelectorAll('input, textarea, select'),
             defaults = {
                 exclude: [],
+                patientId: ""
             };
 
         let extend = function(out) {
@@ -35,6 +36,9 @@ function saveStorage(selector, options){
         };
 
         let opts = extend({}, defaults, options);
+        if(opts && opts.patientId) {
+            key += opts.patientId
+        }
 
         let excludeInputType = function(){
             let inputType = '';
@@ -104,9 +108,9 @@ function saveStorage(selector, options){
             });
         });
 
-        /* form.addEventListener('submit', function () {
+        document.querySelector("#send_form").addEventListener('click', function(){
             localStorage.removeItem(key);
-        }); */ 
+        });
 
         initApp();
     }
