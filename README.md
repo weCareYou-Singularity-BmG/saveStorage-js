@@ -5,7 +5,7 @@
 ## Supported elements:
 
 - input (text,number,email,password...)
-- radio, checkbox (input)
+- radio, checkbox (input) -> Material Checkbox/Radio
 - select
 - textarea
 
@@ -35,13 +35,23 @@ HTML
 initialize saveStorage
 
 ```
-saveStorage('#myform');
+// Should be used with timeout in order to allow the form to charge
+setTimeout(function() {
+        saveStorage("#addPrescription", { patientId: entityId.id })
+}, 2500);
 ```
 
-## Options:
+how to delete on submit:
+```
+// Add id="send_form" in the send button ex.
+<button mat-raised-button id="send_form" (click)="save()" [disabled]="medicine_selected == 9 || addPrescription.invalid || !valid_firm" color="primary">Generar Receta</button>
+```
+
+## Options (One is Required):
 
 ```
 saveStorage('#myform', {
     exclude: ['passowrd','hidden'] // does not save input types
+    patientId: Entity.id -> Required in order to save the form for each patient+form
 });
 ```
