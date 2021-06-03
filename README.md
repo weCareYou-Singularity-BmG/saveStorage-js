@@ -35,7 +35,7 @@ HTML
 initialize saveStorage
 
 ```
-// Should be used with timeout in order to allow the form to charge
+// Should be used with timeout in order to allow the form to charge, add at the end of the controller after vm.doneInit = true;
 setTimeout(function() {
         saveStorage("#addPrescription", { patientId: entityId.id })
 }, 2500);
