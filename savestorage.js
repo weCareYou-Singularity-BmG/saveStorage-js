@@ -57,8 +57,8 @@ function saveStorage(selector, options){
                 if(el.type !== 'radio' && el.type !== 'checkbox'){
                     serializeData.push({name: el.name, value: el.value, type: el.type});
                 }
-                else if(el.checked){
-                    serializeData.push({name: el.name, value: el.value, type: el.type});
+                else if(el.ariaChecked){
+                    serializeData.push({name: el.name, value: el.ariaChecked, type: el.type});
                 }
             });
 
@@ -87,10 +87,10 @@ function saveStorage(selector, options){
                     }
                     else {
                         let input = form.querySelectorAll('[name='+v.name+']');
-
                         input.forEach(function(el){
-                            if(el.name === v.name && el.value === v.value){
-                                el.checked = true;
+                            if(el.name === v.name){
+                                // el.checked = true;
+                                el.ariaChecked = v.value;
                             }
                         })
                     }
@@ -106,6 +106,25 @@ function saveStorage(selector, options){
             el.addEventListener('keyup', function(){
                 setLocalStorage();
             });
+
+            if(el.type === "checkbox") {
+                let cortarId = el.id.split("-");
+                cortarId.pop()
+                /*let id = cortarId.reduce((finalId, tag, index) => index === 0 ? finalId + tag : finalId + "-" + tag, "")*/
+                let id = cortarId[0]
+                let checkboxWrapper = form.querySelector(`#${id}`);
+                el.addEventListener('click', function(){
+                    setLocalStorage();
+                });
+                setTimeout(function() {
+                    if(el.ariaChecked === "true") {
+                        checkboxWrapper.classList.add("mat-checkbox-checked")
+                    } else {
+                        checkboxWrapper.classList.remove("mat-checkbox-checked")
+                    }
+                }, 800);
+            }
+
         });
 
         form.querySelector("#send_form").addEventListener('click', function(){
