@@ -134,9 +134,15 @@ function saveStorage(selector, options){
 
         });
 
-        form.querySelector(opts.buttonName || "#send_form").addEventListener('click', function(){
-            localStorage.removeItem(key);
-        });
+        if(opts.buttonName) {
+            document.querySelector(opts.buttonName).addEventListener('click', function(){
+                localStorage.removeItem(key);
+            });
+        } else {
+            form.querySelector("#send_form").addEventListener('click', function(){
+                localStorage.removeItem(key);
+            });
+        }
 
         initApp();
     }
