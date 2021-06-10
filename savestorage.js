@@ -135,7 +135,7 @@ function saveStorage(selector, options){
         });
 
         if(opts.buttonName) {
-            document.querySelector(opts.buttonName).addEventListener('click', function(){
+            document.querySelector(`#${opts.buttonName}`).addEventListener('click', function(){
                 localStorage.removeItem(key);
             });
         } else {
