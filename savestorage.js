@@ -16,7 +16,9 @@ function saveStorage(selector, options){
             elements = form.querySelectorAll('input, textarea, select'),
             defaults = {
                 exclude: [],
-                patientId: ""
+                patientId: null,
+                formName: null,
+                buttonName: null
             };
 
         let extend = function(out) {
@@ -36,6 +38,11 @@ function saveStorage(selector, options){
         };
 
         let opts = extend({}, defaults, options);
+
+        if(opts && opts.formName) {
+            key += opts.formName
+        }
+
         if(opts && opts.patientId) {
             key += opts.patientId
         }
@@ -127,7 +134,7 @@ function saveStorage(selector, options){
 
         });
 
-        form.querySelector("#send_form").addEventListener('click', function(){
+        form.querySelector(opts.buttonName || "#send_form").addEventListener('click', function(){
             localStorage.removeItem(key);
         });
 
