@@ -40,7 +40,11 @@ function saveStorage(selector, options){
         let opts = extend({}, defaults, options);
 
         if(opts && opts.formName) {
-            key += opts.formName
+            let formName = opts.formName
+            if(formName.includes("/")) {
+                formName.replaceAll("/", "_")
+            }
+            key += formName
         }
 
         if(opts && opts.patientId) {
